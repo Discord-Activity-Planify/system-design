@@ -314,7 +314,7 @@
   ```json
   {
     "name": "string",
-    "listOrder": "integer"
+    "order": "integer"
   }
   ```
 - **Response**:
