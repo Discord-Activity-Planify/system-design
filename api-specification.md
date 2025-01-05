@@ -626,6 +626,36 @@
 
 ---
 
+### **Members**
+
+#### GET /projects/{projectId}/members
+- Fetch a list of user IDs (members) for a specific project.
+- **Path Parameters**:
+  - projectId: ID of the project.
+- **Response**:
+  - **200 OK**:
+    ```json
+    {
+      "data": [
+        {
+          "userId": "string",
+        },
+        {
+          "userId": "string",
+        }
+      ]
+    }
+    ```
+  - **404 Not Found**:
+    ```json
+    { "error": "Project not found" }
+    ```
+  - **401 Unauthorized**:
+    ```json
+    { "error": "Authentication required" }
+    ```
+---
+
 ### **Files**
 
 #### GET `/file/{fileId}`
@@ -674,36 +704,6 @@
     { "error": "Unexpected error during file upload" }
     ```
 
----
-
-### **Members**
-
-#### GET /projects/{projectId}/members
-- Fetch a list of user IDs (members) for a specific project.
-- **Path Parameters**:
-  - projectId: ID of the project.
-- **Response**:
-  - **200 OK**:
-    ```json
-    {
-      "data": [
-        {
-          "userId": "string",
-        },
-        {
-          "userId": "string",
-        }
-      ]
-    }
-    ```
-  - **404 Not Found**:
-    ```json
-    { "error": "Project not found" }
-    ```
-  - **401 Unauthorized**:
-    ```json
-    { "error": "Authentication required" }
-    ```
 ---
 
 ## SSE APIs
