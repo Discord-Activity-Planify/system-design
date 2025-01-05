@@ -1,14 +1,14 @@
 # API Documentation
 
 ## Base URLs
-- **HTTP**: `https://domain:5000/api/v1`
+- **HTTP project-service**: `https://domain:5000/api/v1`
+- **HTTP file-service**: `https://domain:3000/api/v1`
 ---
 
 ## Authentication
 - **Method**: Bearer Token
 - **Details**: All API requests require a valid Discord user token for authentication.
   - **HTTP**: Include the token in the `Authorization` header as `Bearer <discord_token>`.
-  - **WebSocket**: Pass the token in the `Authorization` header during the WebSocket handshake.
 
 ---
 
