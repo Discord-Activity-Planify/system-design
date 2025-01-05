@@ -548,7 +548,7 @@
 ---
 
 ### **Card Histories**
-#### GET `/projects/{projectId}/boards/{boardId}/cards/{cardId}/histories?page={page}&limit={limit}`
+#### GET `/projects/{projectId}/boards/{boardId}/lists/{listId}/cards/{cardId}/histories?page={page}&limit={limit}`
 - Fetch a paginated list of histories for a specific card.
 - **Path Parameters**:
   - `projectId`: ID of the project.
@@ -589,7 +589,7 @@
     { "error": "Card not found" }
     ```
 
-#### GET `/projects/{projectId}/boards/{boardId}/cards/{cardId}/histories/{historyId}`
+#### GET `/projects/{projectId}/boards/{boardId}/lists/{listId}/cards/{cardId}/histories/{historyId}`
 - Fetch details of a specific history entry for a card.
 - **Path Parameters**:
   - `projectId`: ID of the project.
