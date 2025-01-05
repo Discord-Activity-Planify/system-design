@@ -436,7 +436,7 @@
     "assignedTo": ["string"],
     "files": [
         {
-            "fileName": "string",
+            "name": "string",
             "fileId": "integer"
         }
     ]
@@ -472,7 +472,7 @@
       "assignedTo": ["string"],
       "files": [
           {
-              "fileName": "string",
+              "name": "string",
               "fileId": "integer"
           }
       ],
@@ -507,7 +507,7 @@
       "assignedTo": ["string"],
       "files": [
           {
-              "fileName": "string",
+              "name": "string",
               "fileId": "integer"
           }
       ],
@@ -609,7 +609,7 @@
       "assignedTo": ["string"],
       "files": [
           {
-              "fileName": "string",
+              "name": "string",
               "fileId": "integer"
           }
       ]
