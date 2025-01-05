@@ -636,14 +636,7 @@
   - **200 OK**:
     ```json
     {
-      "data": [
-        {
-          "userId": "string",
-        },
-        {
-          "userId": "string",
-        }
-      ]
+      "userIds": ["string"]
     }
     ```
   - **404 Not Found**:
