@@ -589,18 +589,18 @@
     { "error": "Card not found" }
     ```
 
-#### GET `/projects/{projectId}/boards/{boardId}/lists/{listId}/cards/{cardId}/histories/{historyId}`
+#### GET `/projects/{projectId}/boards/{boardId}/lists/{listId}/cards/{cardId}/histories/{versionNumber}`
 - Fetch details of a specific history entry for a card.
 - **Path Parameters**:
   - `projectId`: ID of the project.
   - `boardId`: ID of the board.
   - `cardId`: ID of the card.
-  - `historyId`: ID of the history entry.
+  - `versionNumber`: ID of the history entry.
 - **Response**:
   - **200 OK**:
     ```json
     {
-      "historyId": "integer",
+      "versionNumber": "integer",
       "name": "string",
       "description": "string",
       "style": "string",
