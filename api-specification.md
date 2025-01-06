@@ -56,6 +56,7 @@
         ],
         "pagination": {
             "lastPage": "integer",
+            "limit": "integer"
         }
     }
     ```
@@ -173,6 +174,7 @@
         ],
         "pagination": {
             "lastPage": "integer",
+            "limit": "integer"
         }
     }
     ```
@@ -297,6 +299,7 @@
         ],
         "pagination": {
             "lastPage": "integer",
+            "limit": "integer"
         }
     }
     ```
@@ -406,6 +409,7 @@
         ],
         "pagination": {
             "lastPage": "integer",
+            "limit": "integer"
         }
     }
     ```
@@ -577,6 +581,7 @@
         ],
         "pagination": {
             "lastPage": "integer",
+            "limit": "integer"
         }
     }
     ```
