@@ -80,7 +80,7 @@
     ```
   - **400 Bad Request**:
     ```json
-    { "error": "Invalid input data" }
+    { "error": "Name is required" }
     ```
 
 #### PUT `/projects/{projectId}`
