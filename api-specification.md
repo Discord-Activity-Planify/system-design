@@ -404,7 +404,7 @@
                 "startDate": "string",
                 "endDate": "string",
                 "assignedTo": ["string"],
-                "style": "string"
+                "styleId": "integer"
             }
         ],
         "pagination": {
@@ -433,7 +433,7 @@
     "listId": "integer",
     "name": "string",
     "description": "string",
-    "style": "string",
+    "styleId": "integer",
     "startDate": "string",
     "endDate": "string",
     "reminderDaysInterval": "integer",
@@ -469,7 +469,7 @@
       "cardId": "integer",
       "name": "string",
       "description": "string",
-      "style": "string",
+      "styleId": "integer",
       "startDate": "string",
       "endDate": "string",
       "reminderDaysInterval": "integer",
@@ -504,7 +504,7 @@
     {
       "name": "string",
       "description": "string",
-      "style": "string",
+      "styleId": "integer",
       "startDate": "string",
       "endDate": "string",
       "reminderDaysInterval": "integer",
@@ -608,7 +608,7 @@
       "versionNumber": "integer",
       "name": "string",
       "description": "string",
-      "style": "string",
+      "styleId": "integer",
       "startDate": "string",
       "endDate": "string",
       "assignedTo": ["string"],
@@ -701,6 +701,67 @@
     ```json
     { "error": "Unexpected error during file upload" }
     ```
+
+---
+
+### **Invites**
+#### POST `/projects/{projectId}/invite`
+- Invite a user to a project.
+- **Path Parameters**:
+  - `projectId`: ID of the project to invite the user to.
+- **Body**:
+  ```json
+  {
+    "userId": "string",
+  }
+- **Response**:
+  - **201 Created**:
+    ```json
+    {
+      "success": true
+    }
+    ```
+  - **400 Bad Request**:
+    ```json
+    { "error": "Invalid input data" }
+    ```
+  - **401 Unauthorized**:
+    ```json
+    { "error": "Authentication required" }
+    ```
+  - **403 Forbidden**:
+    ```json
+    { "error": "You do not have permission to invite users to this project." }
+    ```
+  - **404 Not Found**:
+    ```json
+    { "error": "Project not found" }
+    ```
+
+---
+
+### **Styles**
+#### GET `/styles`
+- Fetch a list of styles (categories) available for cards.
+
+---
+
+### **Response**
+
+#### **200 OK**
+```json
+{
+  "data": [
+    {
+      "styleId": "integer",
+      "name": "string"
+    },
+    {
+      "styleId": "integer",
+      "name": "string"
+    }
+  ]
+}
 
 ---
 
