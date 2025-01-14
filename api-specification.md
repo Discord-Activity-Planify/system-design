@@ -855,7 +855,7 @@
     }
   ]
 }
-
+```
 ---
 
 ### Server-Sent Events (SSE)
