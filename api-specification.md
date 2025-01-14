@@ -881,8 +881,7 @@ The `Authorization` header must include a valid Bearer token for authentication.
     {
       "type": "project:created",
       "projectId": "integer",
-      "name": "string",
-      "createdAt": "string"
+      "name": "string"
     }
     ```
 
@@ -893,8 +892,7 @@ The `Authorization` header must include a valid Bearer token for authentication.
     {
       "type": "project:updated",
       "projectId": "integer",
-      "name": "string",
-      "updatedAt": "string"
+      "name": "string"
     }
     ```
 
@@ -919,8 +917,7 @@ The `Authorization` header must include a valid Bearer token for authentication.
       "type": "board:created",
       "projectId": "integer",
       "boardId": "integer",
-      "name": "string",
-      "createdAt": "string"
+      "name": "string"
     }
     ```
 
@@ -932,8 +929,7 @@ The `Authorization` header must include a valid Bearer token for authentication.
       "type": "board:updated",
       "projectId": "integer",
       "boardId": "integer",
-      "name": "string",
-      "updatedAt": "string"
+      "name": "string"
     }
     ```
 
@@ -960,8 +956,7 @@ The `Authorization` header must include a valid Bearer token for authentication.
       "projectId": "integer",
       "boardId": "integer",
       "listId": "integer",
-      "name": "string",
-      "createdAt": "string"
+      "name": "string"
     }
     ```
 
@@ -974,8 +969,7 @@ The `Authorization` header must include a valid Bearer token for authentication.
       "projectId": "integer",
       "boardId": "integer",
       "listId": "integer",
-      "name": "string",
-      "updatedAt": "string"
+      "name": "string"
     }
     ```
 
@@ -1004,8 +998,7 @@ The `Authorization` header must include a valid Bearer token for authentication.
       "boardId": "integer",
       "listId": "integer",
       "cardId": "integer",
-      "name": "string",
-      "createdAt": "string"
+      "name": "string"
     }
     ```
 
@@ -1019,8 +1012,7 @@ The `Authorization` header must include a valid Bearer token for authentication.
       "boardId": "integer",
       "listId": "integer",
       "cardId": "integer",
-      "name": "string",
-      "updatedAt": "string"
+      "name": "string"
     }
     ```
 
