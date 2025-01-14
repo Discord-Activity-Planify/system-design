@@ -532,6 +532,99 @@
     ```json
     { "error": "Card not found" }
     ```
+  
+#### PUT `/projects/{projectId}/boards/{boardId}/lists/{listId}/cards/{cardId}/order`
+- Update the order of a specific card.
+- **Path Parameters**:
+  - `projectId`: ID of the project.
+  - `boardId`: ID of the board.
+  - `listId`: ID of the list.
+  - `cardId`: ID of the card.
+- **Body**:
+  ```json
+  {
+    "order": "integer"
+  }
+  ```
+- **Response**:
+  - **200 OK**:
+    ```json
+    { "success": true }
+    ```
+  - **400 Bad Request**:
+    ```json
+    { "error": "Missing required parameters or order" }
+    ```
+  - **404 Not Found**:
+    ```json
+    { "error": "Card not found" }
+    ```
+  - **500 Internal Server Error**:
+    ```json
+    { "error": "Error updating order" }
+    ```
+
+#### PUT `/projects/{projectId}/boards/{boardId}/lists/{listId}/cards/{cardId}/reminder-interval`
+- Update the reminder interval of a specific card.
+- **Path Parameters**:
+  - `projectId`: ID of the project.
+  - `boardId`: ID of the board.
+  - `listId`: ID of the list.
+  - `cardId`: ID of the card.
+- **Body**:
+  ```json
+  {
+    "reminderDaysInterval": "integer"
+  }
+  ```
+- **Response**:
+  - **200 OK**:
+    ```json
+    { "success": true }
+    ```
+  - **400 Bad Request**:
+    ```json
+    { "error": "Missing required parameters or reminderDaysInterval" }
+    ```
+  - **404 Not Found**:
+    ```json
+    { "error": "Card not found" }
+    ```
+  - **500 Internal Server Error**:
+    ```json
+    { "error": "Error updating reminderDaysInterval" }
+    ```
+
+#### PUT `/projects/{projectId}/boards/{boardId}/lists/{listId}/cards/{cardId}/acknowledgements`
+- Update acknowledgements for a specific card.
+- **Path Parameters**:
+  - `projectId`: ID of the project.
+  - `boardId`: ID of the board.
+  - `listId`: ID of the list.
+  - `cardId`: ID of the card.
+- **Body**:
+  ```json
+  {
+    "acknowledgements": ["string"]
+  }
+  ```
+- **Response**:
+  - **200 OK**:
+    ```json
+    { "success": true }
+    ```
+  - **400 Bad Request**:
+    ```json
+    { "error": "Missing required parameters or invalid acknowledgements format" }
+    ```
+  - **404 Not Found**:
+    ```json
+    { "error": "Card not found" }
+    ```
+  - **500 Internal Server Error**:
+    ```json
+    { "error": "Error updating acknowledgements" }
+    ```
 
 #### DELETE `/projects/{projectId}/boards/{boardId}/cards/{cardId}`
 - Delete a specific card.
@@ -765,78 +858,65 @@
 
 ---
 
-## SSE APIs
+### Server-Sent Events (SSE)
 
-### **Initial Connection**
+#### SSE Endpoint
+- **URL**: `/events`
+- **Method**: GET
+- **Headers**:
+  - `Authorization`: `Bearer <access_token>`
+
 #### Authentication
-When establishing a Server-Sent Events (SSE) connection, the client must authenticate by providing a valid Discord OAuth2 access token. The token must be included as a query parameter in the connection URL:
-
-- **Connection URL**:
-  ```plaintext
-  /events?token=<ACCESS_TOKEN>
-  ```
-
-#### Server Response
-The server validates the token by calling Discord's `/users/@me` API. Based on the result:
-
-- **Successful Authentication**:
-  The server keeps the connection open and begins streaming events.
-
-- **Failed Authentication**:
-  The server responds with an HTTP 401 status and closes the connection.
+The `Authorization` header must include a valid Bearer token for authentication. This token will be validated by the middleware, similar to standard API requests.
 
 ---
 
-### **Projects**
-#### Events
-- **`created`**
+### Event Types and Payloads
+
+#### **Projects**
+- **Event Type**: `project:created`
   - Sent when a new project is created.
-  - **Path**: `/events/projects`
   - **Payload**:
     ```json
     {
-      "type": "created",
+      "type": "project:created",
       "projectId": "integer",
       "name": "string",
       "createdAt": "string"
     }
     ```
 
-- **`updated`**
+- **Event Type**: `project:updated`
   - Sent when a project is updated.
-  - **Path**: `/events/projects`
   - **Payload**:
     ```json
     {
-      "type": "updated",
+      "type": "project:updated",
       "projectId": "integer",
       "name": "string",
       "updatedAt": "string"
     }
     ```
 
-- **`deleted`**
+- **Event Type**: `project:deleted`
   - Sent when a project is deleted.
-  - **Path**: `/events/projects`
   - **Payload**:
     ```json
     {
-      "type": "deleted",
+      "type": "project:deleted",
       "projectId": "integer"
     }
     ```
 
 ---
 
-### **Boards**
-#### Events
-- **`created`**
-  - Sent when a new board is created in a project.
-  - **Path**: `/events/boards`
+#### **Boards**
+- **Event Type**: `board:created`
+  - Sent when a new board is created.
   - **Payload**:
     ```json
     {
-      "type": "created",
+      "type": "board:created",
       "projectId": "integer",
       "boardId": "integer",
       "name": "string",
@@ -844,13 +924,12 @@ The server validates the token by calling Discord's `/users/@me` API. Based on t
     }
     ```
 
-- **`updated`**
-  - Sent when a board in a project is updated.
-  - **Path**: `/events/boards`
+- **Event Type**: `board:updated`
+  - Sent when a board is updated.
   - **Payload**:
     ```json
     {
-      "type": "updated",
+      "type": "board:updated",
       "projectId": "integer",
       "boardId": "integer",
       "name": "string",
@@ -858,13 +937,12 @@ The server validates the token by calling Discord's `/users/@me` API. Based on t
     }
     ```
 
-- **`deleted`**
-  - Sent when a board in a project is deleted.
-  - **Path**: `/events/boards`
+- **Event Type**: `board:deleted`
+  - Sent when a board is deleted.
   - **Payload**:
     ```json
     {
-      "type": "deleted",
+      "type": "board:deleted",
       "projectId": "integer",
       "boardId": "integer"
     }
@@ -872,15 +950,13 @@ The server validates the token by calling Discord's `/users/@me` API. Based on t
 
 ---
 
-### **Lists**
-#### Events
-- **`created`**
-  - Sent when a new list is created in a board.
-  - **Path**: `/events/lists`
+#### **Lists**
+- **Event Type**: `list:created`
+  - Sent when a new list is created.
   - **Payload**:
     ```json
     {
-      "type": "created",
+      "type": "list:created",
       "projectId": "integer",
       "boardId": "integer",
       "listId": "integer",
@@ -889,13 +965,12 @@ The server validates the token by calling Discord's `/users/@me` API. Based on t
     }
     ```
 
-- **`updated`**
-  - Sent when a list in a board is updated.
-  - **Path**: `/events/lists`
+- **Event Type**: `list:updated`
+  - Sent when a list is updated.
   - **Payload**:
     ```json
     {
-      "type": "updated",
+      "type": "list:updated",
       "projectId": "integer",
       "boardId": "integer",
       "listId": "integer",
@@ -904,13 +979,12 @@ The server validates the token by calling Discord's `/users/@me` API. Based on t
     }
     ```
 
-- **`deleted`**
-  - Sent when a list in a board is deleted.
-  - **Path**: `/events/lists`
+- **Event Type**: `list:deleted`
+  - Sent when a list is deleted.
   - **Payload**:
     ```json
     {
-      "type": "deleted",
+      "type": "list:deleted",
       "projectId": "integer",
       "boardId": "integer",
       "listId": "integer"
@@ -919,15 +993,13 @@ The server validates the token by calling Discord's `/users/@me` API. Based on t
 
 ---
 
-### **Cards**
-#### Events
-- **`created`**
-  - Sent when a new card is created in a list.
-  - **Path**: `/events/cards`
+#### **Cards**
+- **Event Type**: `card:created`
+  - Sent when a new card is created.
   - **Payload**:
     ```json
     {
-      "type": "created",
+      "type": "card:created",
       "projectId": "integer",
       "boardId": "integer",
       "listId": "integer",
@@ -937,13 +1009,12 @@ The server validates the token by calling Discord's `/users/@me` API. Based on t
     }
     ```
 
-- **`updated`**
-  - Sent when a card is updated in a list.
-  - **Path**: `/events/cards`
+- **Event Type**: `card:updated`
+  - Sent when a card is updated.
   - **Payload**:
     ```json
     {
-      "type": "updated",
+      "type": "card:updated",
       "projectId": "integer",
       "boardId": "integer",
       "listId": "integer",
@@ -953,13 +1024,12 @@ The server validates the token by calling Discord's `/users/@me` API. Based on t
     }
     ```
 
-- **`deleted`**
-  - Sent when a card is deleted from a list.
-  - **Path**: `/events/cards`
+- **Event Type**: `card:deleted`
+  - Sent when a card is deleted.
   - **Payload**:
     ```json
     {
-      "type": "deleted",
+      "type": "card:deleted",
       "projectId": "integer",
       "boardId": "integer",
       "listId": "integer",
