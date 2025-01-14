@@ -861,13 +861,8 @@
 ### Server-Sent Events (SSE)
 
 #### SSE Endpoint
-- **URL**: `/events`
+- **URL**: `/events?token={token}`
 - **Method**: GET
-- **Headers**:
-  - `Authorization`: `Bearer <access_token>`
-
-#### Authentication
-The `Authorization` header must include a valid Bearer token for authentication. This token will be validated by the middleware, similar to standard API requests.
 
 ---
 
