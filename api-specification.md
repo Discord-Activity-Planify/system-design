@@ -770,6 +770,28 @@
     { "error": "Unexpected server error" }
     ```
 
+#### DELETE `/file/{fileId}`
+- Delete a file by its ID.
+- **Path Parameters**:
+  - `fileId`: ID of the file to delte.
+- **Response**:
+  - **200 OK**:
+    ```json
+    { "success": true }
+    ```
+  - **400 Bad Request**:
+    ```json
+    { "error": "Invalid fileId format" }
+    ```
+  - **404 Not Found**:
+    ```json
+    { "error": "File not found" }
+    ```
+  - **500 Internal Server Error**:
+    ```json
+    { "error": "Unexpected server error" }
+    ```
+
 #### POST `/file/upload`
 - Upload a new file.
 - **Request Body**:
