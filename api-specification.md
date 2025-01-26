@@ -1,8 +1,9 @@
 # API Documentation
 
 ## Base URLs
-- **HTTP project-service**: `https://domain:5000/api/v1`
-- **HTTP file-service**: `https://domain:3000/api/v1`
+- **HTTP project-service**: `https://domain:3001/api/v1`
+- **HTTP file-service**: `https://domain:3002/api/v1`
+- **HTTP discord-auth-service**: `https://domain:3003/api/v1`
 ---
 
 ## Authentication
@@ -12,7 +13,7 @@
 
 ---
 
-## HTTP APIs
+## HTTP project-service
 
 ### **Projects**
 #### GET `/projects/{projectId}`
@@ -747,6 +748,69 @@
     ```
 ---
 
+### **Invites**
+#### POST `/projects/{projectId}/invite`
+- Invite a user to a project.
+- **Path Parameters**:
+  - `projectId`: ID of the project to invite the user to.
+- **Body**:
+  ```json
+  {
+    "userId": "string",
+  }
+- **Response**:
+  - **201 Created**:
+    ```json
+    {
+      "success": true
+    }
+    ```
+  - **400 Bad Request**:
+    ```json
+    { "error": "Invalid input data" }
+    ```
+  - **401 Unauthorized**:
+    ```json
+    { "error": "Authentication required" }
+    ```
+  - **403 Forbidden**:
+    ```json
+    { "error": "You do not have permission to invite users to this project." }
+    ```
+  - **404 Not Found**:
+    ```json
+    { "error": "Project not found" }
+    ```
+
+---
+
+### **Styles**
+#### GET `/styles`
+- Fetch a list of styles (categories) available for cards.
+
+---
+
+### **Response**
+
+#### **200 OK**
+```json
+{
+  "data": [
+    {
+      "styleId": "integer",
+      "name": "string"
+    },
+    {
+      "styleId": "integer",
+      "name": "string"
+    }
+  ]
+}
+```
+---
+
+## HTTP file-service
+
 ### **Files**
 
 #### GET `/file/{fileId}`
@@ -819,65 +883,30 @@
 
 ---
 
-### **Invites**
-#### POST `/projects/{projectId}/invite`
+## HTTP discord-auth-service
+
+#### POST `/token`
 - Invite a user to a project.
-- **Path Parameters**:
-  - `projectId`: ID of the project to invite the user to.
 - **Body**:
   ```json
   {
-    "userId": "string",
+    "code": "string",
   }
 - **Response**:
-  - **201 Created**:
+  - **200 Ok**:
     ```json
     {
-      "success": true
+      "access_token": string
     }
     ```
   - **400 Bad Request**:
     ```json
-    { "error": "Invalid input data" }
+    { "error": string,  "error_description": string}
     ```
-  - **401 Unauthorized**:
+  - **500 Internal Server Error**:
     ```json
-    { "error": "Authentication required" }
+    { "error": "Unexpected server error" }
     ```
-  - **403 Forbidden**:
-    ```json
-    { "error": "You do not have permission to invite users to this project." }
-    ```
-  - **404 Not Found**:
-    ```json
-    { "error": "Project not found" }
-    ```
-
----
-
-### **Styles**
-#### GET `/styles`
-- Fetch a list of styles (categories) available for cards.
-
----
-
-### **Response**
-
-#### **200 OK**
-```json
-{
-  "data": [
-    {
-      "styleId": "integer",
-      "name": "string"
-    },
-    {
-      "styleId": "integer",
-      "name": "string"
-    }
-  ]
-}
-```
 ---
 
 ### Server-Sent Events (SSE)
