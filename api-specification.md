@@ -896,12 +896,12 @@
   - **200 Ok**:
     ```json
     {
-      "access_token": string
+      "access_token": "string"
     }
     ```
   - **400 Bad Request**:
     ```json
-    { "error": string,  "error_description": string}
+    { "error": "string",  "error_description": "string"}
     ```
   - **500 Internal Server Error**:
     ```json
