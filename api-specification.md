@@ -425,6 +425,8 @@
 
 #### POST `/projects/{projectId}/boards/{boardId}/lists/{listId}/cards`
 - Create a new card within a board.
+- **Notes**
+  - `startDate` and `endDate` format as ISO 8601
 - **Path Parameters**:
   - `projectId`: ID of the project.
   - `boardId`: ID of the board.
