@@ -423,15 +423,15 @@
     { "error": "List not found" }
     ```
 
-#### POST `/projects/{projectId}/boards/{boardId}/cards`
+#### POST `/projects/{projectId}/boards/{boardId}/lists/{listId}/cards`
 - Create a new card within a board.
 - **Path Parameters**:
   - `projectId`: ID of the project.
   - `boardId`: ID of the board.
+  - `listId`: ID of the list.
 - **Body**:
   ```json
   {
-    "listId": "integer",
     "name": "string",
     "description": "string",
     "styleId": "integer",
@@ -457,11 +457,12 @@
     { "error": "Invalid input data" }
     ```
 
-#### GET `/projects/{projectId}/boards/{boardId}/cards/{cardId}`
+#### GET `/projects/{projectId}/boards/{boardId}/lists/{listId}/cards/{cardId}`
 - Fetch details of a specific card.
 - **Path Parameters**:
   - `projectId`: ID of the project.
   - `boardId`: ID of the board.
+  - `listId`: ID of the list.
   - `cardId`: ID of the card.
 - **Response**:
   - **200 OK**:
@@ -494,11 +495,12 @@
     { "error": "Card not found" }
     ```
 
-#### PUT `/projects/{projectId}/boards/{boardId}/cards/{cardId}`
+#### PUT `/projects/{projectId}/boards/{boardId}/lists/{listId}/cards/{cardId}`
 - Update details of a specific card.
 - **Path Parameters**:
   - `projectId`: ID of the project.
   - `boardId`: ID of the board.
+  - `listId`: ID of the list.
   - `cardId`: ID of the card.
 - **Body**:
   ```json
@@ -627,11 +629,12 @@
     { "error": "Error updating acknowledgements" }
     ```
 
-#### DELETE `/projects/{projectId}/boards/{boardId}/cards/{cardId}`
+#### DELETE `/projects/{projectId}/boards/{boardId}/lists/{listId}/cards/{cardId}`
 - Delete a specific card.
 - **Path Parameters**:
   - `projectId`: ID of the project.
   - `boardId`: ID of the board.
+  - `listId`: ID of the list.
   - `cardId`: ID of the card.
 - **Response**:
   - **200 OK**:
