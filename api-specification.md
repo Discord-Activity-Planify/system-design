@@ -441,6 +441,7 @@
     "endDate": "string",
     "reminderDaysInterval": "integer",
     "assignedTo": ["string"],
+    "order": "integer",
     "files": [
         {
             "name": "string",
